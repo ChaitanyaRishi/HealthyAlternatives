@@ -15,13 +15,11 @@ export default function AlternativeCard({ alternative, originalCalories }: Alter
   const isRecipe = alternative.type === 'recipe'
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow flex flex-col">
       {/* Header */}
-      <div className="flex justify-between items-start mb-3">
-        <div className="flex items-center gap-2">
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-            {alternative.name}
-          </h3>
+      <div className="mb-3">
+        {/* Badges row */}
+        <div className="flex items-center gap-2 mb-2">
           <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${
             isRecipe
               ? 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300'
@@ -29,12 +27,16 @@ export default function AlternativeCard({ alternative, originalCalories }: Alter
           }`}>
             {isRecipe ? 'Recipe' : 'Product'}
           </span>
+          {caloriesSaved > 0 && (
+            <span className="px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded-full dark:bg-green-900 dark:text-green-300">
+              -{percentSaved}% cal
+            </span>
+          )}
         </div>
-        {caloriesSaved > 0 && (
-          <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full dark:bg-green-900 dark:text-green-300">
-            -{percentSaved}% cal
-          </span>
-        )}
+        {/* Title */}
+        <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+          {alternative.name}
+        </h3>
       </div>
 
       <p className="text-gray-600 dark:text-gray-300 mb-3">
@@ -46,7 +48,7 @@ export default function AlternativeCard({ alternative, originalCalories }: Alter
       </p>
 
       {/* Nutrition Grid */}
-      <div className="grid grid-cols-5 gap-2 mb-4 text-center">
+      <div className="grid grid-cols-5 gap-2 mb-4 text-center mt-auto">
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-2">
           <div className="text-lg font-bold text-gray-800 dark:text-white">
             {alternative.nutrition.calories}
