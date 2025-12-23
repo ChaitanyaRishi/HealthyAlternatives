@@ -44,7 +44,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
       </h2>
 
       {/* Alternatives Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
         {results.alternatives.map((alternative, index) => (
           <AlternativeCard
             key={index}
