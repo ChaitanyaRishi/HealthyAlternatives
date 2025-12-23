@@ -1,7 +1,13 @@
+export interface Ingredient {
+  name: string
+  amount: string
+}
+
 export interface Alternative {
   name: string
   description: string
   whyHealthier: string
+  type: 'product' | 'recipe'
   nutrition: {
     calories: number
     protein: number
@@ -9,11 +15,16 @@ export interface Alternative {
     fat: number
     fiber: number
   }
-  buyLinks: {
+  // For products - direct buy links
+  buyLinks?: {
     amazon: string
     walmart: string
     instacart: string
   }
+  // For recipes - ingredients and instructions
+  ingredients?: Ingredient[]
+  instructions?: string[]
+  ingredientsBuyLink?: string
 }
 
 export interface AlternativesResponse {
